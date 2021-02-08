@@ -1,21 +1,10 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import AppText from "./app/components/AppText";
+import WelcomeScreen from "./app/screens/Welcome";
 
 export default function App() {
-    return (
-        <View style={styles.container}>
-            <MaterialCommunityIcons
-                name="email"
-                size={60}
-                color="greenyellow"
-            />
-
-            <AppText>I love React Native</AppText>
-        </View>
-    );
+    return <WelcomeScreen />;
 }
 
 const styles = StyleSheet.create({
