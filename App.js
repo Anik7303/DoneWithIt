@@ -15,11 +15,15 @@ export default function App() {
                     backgroundColor: "dodgerblue",
                     width: 100,
                     height: 100,
-                    borderWidth: 10,
-                    borderColor: "royalblue",
-                    borderRadius: 10,
-                    borderTopRightRadius: 35,
-                    borderBottomLeftRadius: 35,
+                    // shadow.. only works for ios
+                    shadowColor: "grey",
+                    shadowOffset: {
+                        width: 10,
+                        height: 10,
+                    },
+                    shadowOpacity: 1,
+                    // shadow's replacement in android is elevation
+                    elevation: 15,
                 }}
             ></View>
         </View>
