@@ -12,6 +12,8 @@ export default function App() {
                 size={60}
                 color="greenyellow"
             />
+
+            <AppText>I love React Native</AppText>
         </View>
     );
 }
