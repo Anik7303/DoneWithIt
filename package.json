@@ -1,22 +1,41 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
-  "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "eject": "expo eject"
-  },
-  "dependencies": {
-    "expo": "~40.0.0",
-    "expo-status-bar": "~1.0.3",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
-    "react-native-web": "~0.13.12"
-  },
-  "devDependencies": {
-    "@babel/core": "~7.9.0"
-  },
-  "private": true
+    "main": "node_modules/expo/AppEntry.js",
+    "scripts": {
+        "start": "expo start",
+        "android": "expo start --android",
+        "ios": "expo start --ios",
+        "web": "expo start --web",
+        "eject": "expo eject"
+    },
+    "dependencies": {
+        "expo": "~40.0.0",
+        "expo-status-bar": "~1.0.3",
+        "react": "16.13.1",
+        "react-dom": "16.13.1",
+        "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
+        "react-native-web": "~0.13.12"
+    },
+    "devDependencies": {
+        "@babel/core": "~7.9.0"
+    },
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com:Anik7303/DoneWithIt"
+    },
+    "bugs": {
+        "url": "https://github.com/Anik7303/DoneWithIt/issues"
+    },
+    "author": {
+        "name": "Anik Mohammad",
+        "email": "anik7303@gmail.com"
+    },
+    "engines": {
+        "node": "14.15.4",
+        "npm": "7.5.2"
+    },
+    "keywords": [
+        "React Native",
+        "Expo"
+    ]
 }
