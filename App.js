@@ -1,16 +1,29 @@
 import React, { useState } from "react"
 
 import Wrapper from "./app/components/Wrapper"
-import AppText from "./app/components/AppText"
-import { Switch } from "react-native"
+import AppPicker from "./app/components/AppPicker"
+import AppTextInput from "./app/components/AppTextInput"
+
+const categories = [
+    { label: "Furniture", value: 1 },
+    { label: "Clothing", value: 2 },
+    { label: "Cameras", value: 3 },
+]
 
 export default function App() {
-    const [isNew, setIsNew] = useState(false)
+    const [selectedItem, setSelectedItem] = useState(categories[0])
+    console.log({ selectedItem })
 
     return (
-        <Wrapper>
-            <AppText>Switch Component</AppText>
-            <Switch value={isNew} onValueChange={setIsNew} />
+        <Wrapper style={{ paddingTop: 100 }}>
+            <AppPicker
+                data={categories}
+                icon="apps"
+                placeholder="Category"
+                selectedItem={selectedItem}
+                onItemSelect={setSelectedItem}
+            />
+            <AppTextInput placeholder="Email" icon="email" />
         </Wrapper>
     )
 }

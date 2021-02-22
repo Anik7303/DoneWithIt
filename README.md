@@ -33,3 +33,4 @@ some props:
 some props:
 
 -   visible
+-   animationType
