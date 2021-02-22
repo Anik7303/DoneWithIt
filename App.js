@@ -1,7 +1,7 @@
-import React from "react";
+import React from "react"
 
-import ViewImage from "./app/screens/ViewImage";
+import Account from "./app/screens/Account"
 
 export default function App() {
-    return <ViewImage />;
+    return <Account />
 }
