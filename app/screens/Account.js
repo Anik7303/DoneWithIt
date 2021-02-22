@@ -67,11 +67,6 @@ const Account = () => {
     )
 }
 
-const border = {
-    borderWidth: 1,
-    borderColor: "black",
-}
-
 const styles = StyleSheet.create({
     heading: {
         marginBottom: 30,

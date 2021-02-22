@@ -1,7 +1,7 @@
 import React from "react"
 
-import Account from "./app/screens/Account"
+import Listings from "./app/screens/Listings"
 
 export default function App() {
-    return <Account />
+    return <Listings />
 }
