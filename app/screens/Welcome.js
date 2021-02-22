@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import {
     Image,
     ImageBackground,
@@ -6,9 +6,9 @@ import {
     StyleSheet,
     Text,
     View,
-} from "react-native";
+} from "react-native"
 
-import { AppButton } from "../components";
+import AppButton from "../components/AppButton"
 
 export default function Welcome() {
     return (
@@ -29,7 +29,7 @@ export default function Welcome() {
                 <AppButton title="Register" color="secondary" />
             </View>
         </ImageBackground>
-    );
+    )
 }
 
 const styles = StyleSheet.create({
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
         fontSize: 25,
         paddingVertical: 20,
     },
-});
+})

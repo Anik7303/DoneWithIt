@@ -1,4 +1,2 @@
-import AppText from "./AppText";
-import AppButton from "./AppButton";
-
-export { AppText, AppButton };
+export { default as AppText } from "./AppText"
+export { default as AppButton } from "./AppButton"
