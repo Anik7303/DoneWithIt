@@ -1,10 +1,11 @@
-import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
-import AppText from "../components/AppText";
-import ListItem from "../components/ListItem";
-import colors from "../config/colors";
+import React from "react"
+import { Image, StyleSheet, View } from "react-native"
 
-const ListingDetails = (props) => {
+import AppText from "../components/AppText"
+import ListItem from "../components/ListItem"
+import colors from "../config/colors"
+
+const ListingDetails = () => {
     return (
         <View style={styles.container}>
             <Image
@@ -13,20 +14,20 @@ const ListingDetails = (props) => {
             />
             <View style={styles.detailsContainer}>
                 <AppText style={styles.title}>Red jacket for sale</AppText>
-                <AppText style={styles.subTitle}>$100</AppText>
+                <AppText style={styles.price}>$100</AppText>
             </View>
             <View style={styles.userContainer}>
                 <ListItem
                     image={require("../assets/mosh.jpg")}
                     title="Mosh Hamedani"
-                    subTitle="5 listings"
+                    description="5 listings"
                 />
             </View>
         </View>
-    );
-};
+    )
+}
 
-export default ListingDetails;
+export default ListingDetails
 
 const styles = StyleSheet.create({
     container: {},
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 300,
     },
-    subTitle: {
+    price: {
         color: colors.secondary,
         fontSize: 18,
     },
@@ -49,5 +50,6 @@ const styles = StyleSheet.create({
     },
     userContainer: {
         marginTop: 30,
+        paddingLeft: 5,
     },
-});
+})

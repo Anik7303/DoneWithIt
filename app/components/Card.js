@@ -1,8 +1,8 @@
-import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import React from "react"
+import { Image, StyleSheet, View } from "react-native"
 
-import colors from "../config/colors";
-import AppText from "./AppText";
+import colors from "../config/colors"
+import AppText from "./AppText"
 
 const Card = ({ title, subTitle, image }) => {
     return (
@@ -13,10 +13,10 @@ const Card = ({ title, subTitle, image }) => {
                 <AppText style={styles.subTitle}>{subTitle}</AppText>
             </View>
         </View>
-    );
-};
+    )
+}
 
-export default Card;
+export default Card
 
 const styles = StyleSheet.create({
     card: {
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
     title: {
         marginBottom: 7,
     },
-});
+})
