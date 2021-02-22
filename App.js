@@ -1,32 +1,16 @@
 import React, { useState } from "react"
 
 import Wrapper from "./app/components/Wrapper"
-import AppTextInput from "./app/components/AppTextInput"
 import AppText from "./app/components/AppText"
+import { Switch } from "react-native"
 
 export default function App() {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [isNew, setIsNew] = useState(false)
 
     return (
         <Wrapper>
-            <AppTextInput
-                icon="email"
-                placeholder="Email"
-                value={email}
-                onChangeText={setEmail}
-                maxLength={6}
-                autoCorrect={false}
-            />
-            <AppText>{email}</AppText>
-            <AppTextInput
-                icon="key"
-                placeholder="Password"
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry
-            />
-            <AppText>{password}</AppText>
+            <AppText>Switch Component</AppText>
+            <Switch value={isNew} onValueChange={setIsNew} />
         </Wrapper>
     )
 }

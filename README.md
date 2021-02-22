@@ -19,6 +19,17 @@ some props:
 
 ### Switch
 
-### Picker
+some props:
+
+-   value
+-   onValueChange
+
+### [Picker](https://www.npmjs.com/package/@react-native-picker/picker)
+
+> cannot be used with `expo` right now without ejecting
 
 ### Modal
+
+some props:
+
+-   visible
