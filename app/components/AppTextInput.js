@@ -26,6 +26,7 @@ const AppTextInput = ({
                 style={[styles.text, style]}
                 value={value}
                 placeholder={placeholder}
+                placeholderTextColor={defaultStyles.colors.medium}
                 onChangeText={onChangeText}
                 {...otherProps}
             />
