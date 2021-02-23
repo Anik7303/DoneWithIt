@@ -12,10 +12,11 @@ import defaultStyles from "../config/styles"
 const AppModal = ({
     data,
     isVisible,
+    ItemSeparatorComponent,
     keyExtractor,
+    numOfColumns = 1,
     onClose,
     renderItem,
-    ItemSeparatorComponent,
     ...otherListProps
 }) => {
     return (
@@ -27,6 +28,7 @@ const AppModal = ({
                 style={styles.list}
                 data={data}
                 keyExtractor={keyExtractor}
+                numColumns={numOfColumns}
                 renderItem={renderItem}
                 ItemSeparatorComponent={ItemSeparatorComponent}
                 {...otherListProps}

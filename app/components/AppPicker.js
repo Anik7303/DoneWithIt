@@ -12,9 +12,12 @@ const AppPicker = ({
     data,
     icon,
     iconStyle,
-    placeholder,
-    selectedItem,
+    numOfColumns,
     onItemSelect,
+    placeholder,
+    PickerItemComponent = PickerItem,
+    selectedItem,
+    width = "100%",
 }) => {
     const [visible, setVisible] = useState(false)
 
@@ -30,7 +33,7 @@ const AppPicker = ({
     return (
         <>
             <TouchableWithoutFeedback onPress={() => setVisible(true)}>
-                <View style={styles.container}>
+                <View style={[styles.container, { width }]}>
                     {icon && (
                         <MaterialCommunityIcons
                             name={icon}
@@ -54,17 +57,18 @@ const AppPicker = ({
                 </View>
             </TouchableWithoutFeedback>
             <AppModal
-                isVisible={visible}
-                onClose={handleModalClose}
                 data={data}
+                isVisible={visible}
+                ItemSeparatorComponent={ListItemSeparator}
                 keyExtractor={(item) => item.value.toString()}
+                numOfColumns={numOfColumns}
+                onClose={handleModalClose}
                 renderItem={({ item }) => (
-                    <PickerItem
-                        label={item.label}
+                    <PickerItemComponent
+                        item={item}
                         onPress={() => handleSelect(item)}
                     />
                 )}
-                ItemSeparatorComponent={ListItemSeparator}
             />
         </>
     )
@@ -72,7 +76,6 @@ const AppPicker = ({
 
 const styles = StyleSheet.create({
     container: {
-        width: "100%",
         flexDirection: "row",
         alignItems: "center",
         backgroundColor: defaultStyles.colors.light,

@@ -8,6 +8,7 @@ import {
     AppFormPicker as Picker,
     SubmitButton,
 } from "../components/forms"
+import CategoryPickerItem from "../components/CategoryPickerItem"
 import Wrapper from "../components/Wrapper"
 
 const validationSchema = Yup.object().shape({
@@ -18,9 +19,40 @@ const validationSchema = Yup.object().shape({
 })
 
 const categories = [
-    { label: "Furniture", value: 1 },
-    { label: "Camera", value: 2 },
-    { label: "Clothing", value: 3 },
+    {
+        label: "Furniture",
+        value: 1,
+        icon: "floor-lamp",
+        backgroundColor: "red",
+    },
+    { label: "Cars", value: 2, icon: "car", backgroundColor: "green" },
+    { label: "Cameras", value: 3, icon: "camera", backgroundColor: "blue" },
+    { label: "Games", value: 4, icon: "cards-outline", backgroundColor: "red" },
+    {
+        label: "Clothing",
+        value: 5,
+        icon: "shoe-heel",
+        backgroundColor: "green",
+    },
+    {
+        label: "Sports",
+        value: 6,
+        icon: "basketball",
+        backgroundColor: "blue",
+    },
+    {
+        label: "Movies & Music",
+        value: 7,
+        icon: "music",
+        backgroundColor: "red",
+    },
+    {
+        label: "Books",
+        value: 8,
+        icon: "book-open-variant",
+        backgroundColor: "green",
+    },
+    { label: "Others", value: 9, icon: "application", backgroundColor: "blue" },
 ]
 
 const ListingEdit = () => {
@@ -51,11 +83,15 @@ const ListingEdit = () => {
                     name="price"
                     keyboardType="numeric"
                     maxLength={8}
+                    width={120}
                 />
                 <Picker
                     data={categories}
                     name="category"
+                    numOfColumns={3}
                     placeholder="Category"
+                    PickerItemComponent={CategoryPickerItem}
+                    width="50%"
                 />
                 <FormField
                     autoCapitalize="sentences"
