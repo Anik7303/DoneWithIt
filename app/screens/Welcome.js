@@ -8,7 +8,7 @@ import {
     View,
 } from "react-native"
 
-import AppButton from "../components/AppButton"
+import Button from "../components/Button"
 
 export default function Welcome() {
     return (
@@ -25,8 +25,8 @@ export default function Welcome() {
                 <Text style={styles.tagline}>Sell What You Don't Need</Text>
             </View>
             <View style={styles.buttonContainer}>
-                <AppButton title="Login" color="primary" />
-                <AppButton title="Register" color="secondary" />
+                <Button title="Login" color="primary" />
+                <Button title="Register" color="secondary" />
             </View>
         </ImageBackground>
     )

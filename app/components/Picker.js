@@ -3,8 +3,8 @@ import { StyleSheet, TouchableWithoutFeedback, View } from "react-native"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 
 import defaultStyles from "../config/styles"
-import AppText from "./AppText"
-import AppModal from "./AppModal"
+import Text from "./Text"
+import Modal from "./Modal"
 import PickerItem from "./PickerItem"
 import ListItemSeparator from "./ListItemSeparator"
 
@@ -41,13 +41,9 @@ const AppPicker = ({
                         />
                     )}
                     {selectedItem ? (
-                        <AppText style={styles.text}>
-                            {selectedItem.label}
-                        </AppText>
+                        <Text style={styles.text}>{selectedItem.label}</Text>
                     ) : (
-                        <AppText style={styles.placeholder}>
-                            {placeholder}
-                        </AppText>
+                        <Text style={styles.placeholder}>{placeholder}</Text>
                     )}
 
                     <MaterialCommunityIcons
@@ -56,7 +52,7 @@ const AppPicker = ({
                     />
                 </View>
             </TouchableWithoutFeedback>
-            <AppModal
+            <Modal
                 data={data}
                 isVisible={visible}
                 ItemSeparatorComponent={ListItemSeparator}

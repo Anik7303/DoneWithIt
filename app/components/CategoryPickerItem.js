@@ -2,7 +2,7 @@ import React from "react"
 import { StyleSheet } from "react-native"
 import { TouchableOpacity, View } from "react-native"
 
-import AppText from "./AppText"
+import Text from "./Text"
 import Icon from "./Icon"
 
 const PickerItem = ({ item, onPress }) => {
@@ -14,9 +14,9 @@ const PickerItem = ({ item, onPress }) => {
                     backgroundColor={item.backgroundColor}
                     size={80}
                 />
-                <AppText style={styles.text} numberOfLines={1}>
+                <Text style={styles.text} numberOfLines={1}>
                     {item.label}
-                </AppText>
+                </Text>
             </View>
         </TouchableOpacity>
     )

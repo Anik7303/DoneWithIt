@@ -3,9 +3,9 @@ import { StyleSheet } from "react-native"
 import * as Yup from "yup"
 
 import {
-    AppForm,
-    AppFormField as FormField,
-    AppFormPicker as Picker,
+    Form,
+    FormField,
+    FormPicker as Picker,
     SubmitButton,
 } from "../components/forms"
 import CategoryPickerItem from "../components/CategoryPickerItem"
@@ -61,7 +61,7 @@ const ListingEdit = () => {
     }
     return (
         <Wrapper style={styles.container}>
-            <AppForm
+            <Form
                 initialValues={{
                     title: "",
                     category: null,
@@ -102,7 +102,7 @@ const ListingEdit = () => {
                     placeholder="Description"
                 />
                 <SubmitButton title="Post" />
-            </AppForm>
+            </Form>
         </Wrapper>
     )
 }
