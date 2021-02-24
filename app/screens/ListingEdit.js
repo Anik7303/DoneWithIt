@@ -11,6 +11,7 @@ import {
 } from "../components/forms"
 import CategoryPickerItem from "../components/CategoryPickerItem"
 import Wrapper from "../components/Wrapper"
+import { useLocation } from "../hooks"
 
 const validationSchema = Yup.object().shape({
     category: Yup.object().required().nullable().label("Category"),
@@ -58,8 +59,10 @@ const categories = [
 ]
 
 const ListingEdit = () => {
+    const [location] = useLocation()
+
     const handleSubmit = (values) => {
-        console.log({ values })
+        console.log({ values, location })
     }
 
     return (
