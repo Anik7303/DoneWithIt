@@ -24,11 +24,11 @@ const AppTextInput = ({
                 />
             )}
             <TextInput
-                style={[styles.text, style]}
-                value={value}
                 onChangeText={onChangeText}
                 placeholder={placeholder}
                 placeholderTextColor={defaultStyles.colors.medium}
+                style={[styles.text, style]}
+                value={value}
                 {...otherProps}
             />
         </View>
@@ -37,20 +37,14 @@ const AppTextInput = ({
 
 const styles = StyleSheet.create({
     container: {
+        ...defaultStyles.formField,
         flexDirection: "row",
-        alignItems: "center",
-        backgroundColor: colors.light,
         paddingHorizontal: 10,
-        marginVertical: 6,
-        borderRadius: 50,
-        borderWidth: 1,
-        borderColor: "#ddd",
-        overflow: "hidden",
     },
     icon: {
+        color: colors.medium,
         fontSize: 20,
         marginRight: 10,
-        color: colors.medium,
     },
     text: {
         ...defaultStyles.text,

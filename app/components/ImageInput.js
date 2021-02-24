@@ -6,10 +6,10 @@ import {
     TouchableWithoutFeedback,
     View,
 } from "react-native"
-import { MaterialCommunityIcons } from "@expo/vector-icons"
 import * as ImagePicker from "expo-image-picker"
+import { MaterialCommunityIcons } from "@expo/vector-icons"
 
-import colors from "../config/colors"
+import defaultStyles from "../config/styles"
 
 const ImageInput = ({ image, onImageChange, size = 100 }) => {
     useEffect(() => {
@@ -65,15 +65,13 @@ const ImageInput = ({ image, onImageChange, size = 100 }) => {
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: "center",
-        backgroundColor: colors.light,
+        ...defaultStyles.formField,
         borderRadius: 15,
         justifyContent: "center",
-        overflow: "hidden",
     },
     icon: {
         fontSize: 40,
-        color: colors.medium,
+        color: defaultStyles.colors.medium,
     },
     image: {
         height: "100%",

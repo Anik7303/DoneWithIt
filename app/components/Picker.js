@@ -3,10 +3,10 @@ import { StyleSheet, TouchableWithoutFeedback, View } from "react-native"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 
 import defaultStyles from "../config/styles"
-import Text from "./Text"
+import ListItemSeparator from "./ListItemSeparator"
 import Modal from "./Modal"
 import PickerItem from "./PickerItem"
-import ListItemSeparator from "./ListItemSeparator"
+import Text from "./Text"
 
 const AppPicker = ({
     data,
@@ -72,15 +72,9 @@ const AppPicker = ({
 
 const styles = StyleSheet.create({
     container: {
+        ...defaultStyles.formField,
         flexDirection: "row",
-        alignItems: "center",
-        backgroundColor: defaultStyles.colors.light,
         paddingHorizontal: 10,
-        marginVertical: 6,
-        borderRadius: 50,
-        borderWidth: 1,
-        borderColor: "#ddd",
-        overflow: "hidden",
     },
     icon: {
         fontSize: 20,

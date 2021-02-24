@@ -5,6 +5,7 @@ import * as Yup from "yup"
 import {
     Form,
     FormField,
+    FormImagePicker,
     FormPicker as Picker,
     SubmitButton,
 } from "../components/forms"
@@ -12,10 +13,11 @@ import CategoryPickerItem from "../components/CategoryPickerItem"
 import Wrapper from "../components/Wrapper"
 
 const validationSchema = Yup.object().shape({
-    title: Yup.string().required().min(1).label("Title"),
     category: Yup.object().required().nullable().label("Category"),
     description: Yup.string().label("Description"),
+    images: Yup.array().min(1, "Please select atleast one image"),
     price: Yup.number().required().min(1).max(10000).label("Price"),
+    title: Yup.string().required().min(1).label("Title"),
 })
 
 const categories = [
@@ -59,18 +61,21 @@ const ListingEdit = () => {
     const handleSubmit = (values) => {
         console.log({ values })
     }
+
     return (
         <Wrapper style={styles.container}>
             <Form
                 initialValues={{
-                    title: "",
                     category: null,
                     description: "",
+                    images: [],
                     price: "",
+                    title: "",
                 }}
                 onSubmit={handleSubmit}
                 validationSchema={validationSchema}
             >
+                <FormImagePicker name="images" />
                 <FormField
                     autoCapitalize="sentences"
                     autoCorrect

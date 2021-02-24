@@ -15,4 +15,13 @@ export default {
             },
         }),
     },
+    formField: {
+        alignItems: "center",
+        backgroundColor: colors.light,
+        borderColor: "#ddd",
+        borderRadius: 50,
+        borderWidth: 1,
+        marginVertical: 6,
+        overflow: "hidden",
+    },
 }

@@ -11,7 +11,7 @@ import WelcomeScreen from "./app/screens/Welcome"
 export default function App() {
     // return <AccountScreen />
     // return <ListingDetailsScreen />
-    // return <ListingEditScreen />
+    return <ListingEditScreen />
     // return <ListingsScreen />
     // return <LoginScreen />
     // return <MessagesScreen />
