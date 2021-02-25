@@ -3,6 +3,7 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { Button, Text, View } from "react-native"
+import { MaterialCommunityIcons } from "@expo/vector-icons"
 
 import AccountScreen from "./app/screens/Account"
 import ListingDetailsScreen from "./app/screens/ListingDetails"
@@ -12,6 +13,7 @@ import LoginScreen from "./app/screens/Login"
 import MessagesScreen from "./app/screens/Messages"
 import WelcomeScreen from "./app/screens/Welcome"
 import Wrapper from "./app/components/Wrapper"
+import Icon from "./app/components/Icon"
 
 const Link = () => {
     const navigation = useNavigation()
@@ -62,9 +64,40 @@ const Account = () => (
 )
 
 const TabNavigator = () => (
-    <Tab.Navigator>
-        <Tab.Screen name="Feed" component={FeedNavigator} />
-        <Tab.Screen name="Account" component={Account} />
+    <Tab.Navigator
+        tabBarOptions={{
+            activeBackgroundColor: "tomato",
+            activeTintColor: "white",
+            inactiveBackgroundColor: "#eee",
+            inactiveTintColor: "black",
+        }}
+    >
+        <Tab.Screen
+            name="Feed"
+            component={FeedNavigator}
+            options={{
+                tabBarIcon: ({ size, color }) => (
+                    <MaterialCommunityIcons
+                        name="home"
+                        size={size}
+                        color={color}
+                    />
+                ),
+            }}
+        />
+        <Tab.Screen
+            name="Account"
+            component={Account}
+            options={{
+                tabBarIcon: ({ size, color }) => (
+                    <MaterialCommunityIcons
+                        name="account"
+                        size={size}
+                        color={color}
+                    />
+                ),
+            }}
+        />
     </Tab.Navigator>
 )
 
