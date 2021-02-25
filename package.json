@@ -1,0 +1,43 @@
+{
+    "name": "donewithit-backend",
+    "version": "1.0.0",
+    "description": "Backend for DoneWithIt App",
+    "main": "index.js",
+    "private": "true",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon index.js",
+        "server": "ngrok http 5000"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/Anik7303/DoneWithIt.git"
+    },
+    "keywords": [
+        "Nodejs",
+        "Express",
+        "Multer",
+        "CORS"
+    ],
+    "author": {
+        "name": "Anik Mohammad",
+        "email": "anik7303@gmail.com"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Anik7303/DoneWithIt/issues"
+    },
+    "homepage": "https://github.com/Anik7303/DoneWithIt#readme",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "mongoose": "^5.11.18",
+        "multer": "^1.4.2",
+        "uuid": "^8.3.2"
+    },
+    "devDependencies": {
+        "dotenv": "^8.2.0",
+        "nodemon": "^2.0.7"
+    }
+}
