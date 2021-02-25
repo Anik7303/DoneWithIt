@@ -9,8 +9,7 @@ const cors = require('cors')
 const express = require('express')
 
 // routes
-const routes = require('./routes')
-const errorRoutes = require('./routes/error')
+const { authRoutes, productRoutes } = require('./routes')
 
 const app = express()
 
@@ -22,8 +21,20 @@ app.use(express.urlencoded({ extended: false }))
 // using multer to store files
 app.use(require('./storage'))
 
-app.use(routes)
-app.use(errorRoutes)
+app.use(authRoutes)
+app.use('/listings', productRoutes)
+
+// 404 - Not Found route handler
+app.use((req, res) => {
+    res.status(404).json({ message: `${req.url} not found` })
+})
+
+// custom error middleware
+app.use((error, req, res, next) => {
+    const code = error.code || 500
+    const message = error.message || 'Something went wrong, please try again'
+    res.status(code).json({ message })
+})
 
 app.listen(process.env.PORT, () =>
     console.log(`go to http://localhost:${process.env.PORT}`)

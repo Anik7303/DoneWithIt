@@ -1,7 +1,3 @@
-const router = require('express').Router()
+exports.authRoutes = require('./auth')
+exports.productRoutes = require('./product')
 
-router.get('/', (req, res) => {
-    res.status(200).json({ message: 'success' })
-})
-
-module.exports = router

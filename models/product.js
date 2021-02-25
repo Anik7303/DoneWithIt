@@ -4,17 +4,21 @@ const Schema = mongoose.Schema
 
 const productSchema = new Schema(
     {
-        title: {
+        categoryId: {
             type: String,
             required: true,
         },
+        description: {
+            type: String,
+            default: '',
+        },
+        images: [String],
         price: {
             type: Number,
             required: true,
         },
-        images: [String],
-        userId: {
-            type: Schema.Types.ObjectId,
+        title: {
+            type: String,
             required: true,
         },
     },
