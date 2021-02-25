@@ -2,6 +2,8 @@
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 // connecting to mongodb server
 require('./database')
+// mongoose models
+require('./models')
 
 const cors = require('cors')
 const express = require('express')
@@ -24,5 +26,5 @@ app.use(routes)
 app.use(errorRoutes)
 
 app.listen(process.env.PORT, () =>
-    console.log(`server connected to port ${process.env.PORT}`)
+    console.log(`go to http://localhost:${process.env.PORT}`)
 )
