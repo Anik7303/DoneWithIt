@@ -1,9 +1,10 @@
 import React from "react"
 import { StyleSheet, FlatList } from "react-native"
 
-import Wrapper from "../components/Wrapper"
-import Card from "../components/Card"
 import colors from "../config/colors"
+import Card from "../components/Card"
+import Routes from "../navigation/routes"
+import Wrapper from "../components/Wrapper"
 
 const listData = [
     {
@@ -20,7 +21,7 @@ const listData = [
     },
 ]
 
-const Listings = () => {
+const Listings = ({ navigation }) => {
     return (
         <Wrapper style={styles.container}>
             <FlatList
@@ -28,9 +29,12 @@ const Listings = () => {
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                     <Card
+                        image={item.image}
+                        onPress={() =>
+                            navigation.navigate(Routes.LISTING_DETAILS, item)
+                        }
                         title={item.title}
                         subTitle={item.price}
-                        image={item.image}
                     />
                 )}
             />

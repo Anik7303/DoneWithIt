@@ -7,6 +7,7 @@ import ListItem from "../components/ListItem"
 import Icon from "../components/Icon"
 import colors from "../config/colors"
 import ListItemSeparator from "../components/ListItemSeparator"
+import Routes from "../navigation/routes"
 
 const list = [
     {
@@ -16,6 +17,7 @@ const list = [
             name: "format-list-bulleted",
             backgroundColor: colors.primary,
         },
+        targetScreen: Routes.LISTINGS,
     },
     {
         id: "2",
@@ -24,10 +26,11 @@ const list = [
             name: "email",
             backgroundColor: colors.secondary,
         },
+        targetScreen: Routes.MESSAGES,
     },
 ]
 
-const Account = () => {
+const Account = ({ navigation }) => {
     const handleLogout = () => {
         console.log("logout")
     }
@@ -50,7 +53,9 @@ const Account = () => {
                         <ListItem
                             title={item.title}
                             IconComponent={() => <Icon {...item.icon} />}
-                            onPress={() => console.log({ item })}
+                            onPress={() =>
+                                navigation.navigate(item.targetScreen)
+                            }
                         />
                     )}
                     ItemSeparatorComponent={ListItemSeparator}

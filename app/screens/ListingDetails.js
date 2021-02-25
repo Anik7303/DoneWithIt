@@ -5,16 +5,15 @@ import Text from "../components/Text"
 import ListItem from "../components/ListItem"
 import colors from "../config/colors"
 
-const ListingDetails = () => {
+const ListingDetails = ({ route }) => {
+    const { image, title, price } = route.params
+
     return (
         <View style={styles.container}>
-            <Image
-                style={styles.image}
-                source={require("../assets/jacket.jpg")}
-            />
+            <Image style={styles.image} source={image} />
             <View style={styles.detailsContainer}>
-                <Text style={styles.title}>Red jacket for sale</Text>
-                <Text style={styles.price}>$100</Text>
+                <Text style={styles.title}>{title}</Text>
+                <Text style={styles.price}>{price}</Text>
             </View>
             <View style={styles.userContainer}>
                 <ListItem

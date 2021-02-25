@@ -1,11 +1,11 @@
 import React from "react"
-import { Image, StyleSheet, View } from "react-native"
+import { Image, StyleSheet, TouchableWithoutFeedback, View } from "react-native"
 
 import colors from "../config/colors"
 import Text from "./Text"
 
-const Card = ({ title, subTitle, image }) => {
-    return (
+const Card = ({ image, onPress, title, subTitle }) => (
+    <TouchableWithoutFeedback onPress={onPress}>
         <View style={styles.card}>
             <Image style={styles.image} source={image} />
             <View style={styles.detailsContainer}>
@@ -13,10 +13,8 @@ const Card = ({ title, subTitle, image }) => {
                 <Text style={styles.subTitle}>{subTitle}</Text>
             </View>
         </View>
-    )
-}
-
-export default Card
+    </TouchableWithoutFeedback>
+)
 
 const styles = StyleSheet.create({
     card: {
@@ -40,3 +38,5 @@ const styles = StyleSheet.create({
         marginBottom: 7,
     },
 })
+
+export default Card
