@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { StyleSheet, FlatList } from "react-native"
 
+import ActivityIndicator from "../components/ActivityIndicator"
+import Button from "../components/Button"
 import colors from "../config/colors"
 import Card from "../components/Card"
-import Routes from "../navigation/routes"
-import Wrapper from "../components/Wrapper"
+import { useApi } from "../hooks"
 import listingsApi from "../api/listings"
+import Routes from "../navigation/routes"
+import Text from "../components/Text"
+import Wrapper from "../components/Wrapper"
 import { generateImageUrl } from "../utils"
 
 const Listings = ({ navigation }) => {
-    const [data, setData] = useState([])
-    const [loading, setLoading] = useState(false)
-
-    const request = async () => {
-        const result = await listingsApi.getListings()
-        if (result.ok) setData(result.data)
-    }
-    useEffect(() => {
-        request()
-    }, [])
+    const { data, error, loading, request } = useApi(listingsApi.getListings)
 
     return (
         <Wrapper style={styles.container}>
+            {error && (
+                <>
+                    <Text>Couldn't retrieve the listings.</Text>
+                    <Button title="Retry" onPress={() => request()} />
+                </>
+            )}
+            <ActivityIndicator visible={loading} />
             <FlatList
                 data={data}
                 keyExtractor={(item) => item._id}
@@ -36,8 +38,9 @@ const Listings = ({ navigation }) => {
                     />
                 )}
                 showsHorizontalScrollIndicator={false}
-                refreshing={loading}
-                onRefresh={() => request()}
+                showsVerticalScrollIndicator={false}
+                // refreshing={loading}
+                // onRefresh={() => request()}
             />
         </Wrapper>
     )

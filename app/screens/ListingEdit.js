@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { StyleSheet } from "react-native"
 import * as Yup from "yup"
 
@@ -13,6 +13,7 @@ import CategoryPickerItem from "../components/CategoryPickerItem"
 import Wrapper from "../components/Wrapper"
 import { useLocation } from "../hooks"
 import listingsApi from "../api/listings"
+import UploadIndicator from "../components/UploadIndicator"
 
 const validationSchema = Yup.object().shape({
     category: Yup.object().required().nullable().label("Category"),
@@ -60,23 +61,35 @@ const categories = [
 ]
 
 const ListingEdit = () => {
+    const [uploadVisible, setUploadVisible] = useState(false)
+    const [progress, setProgress] = useState(0)
     const [location] = useLocation()
 
-    const handleSubmit = async (values) => {
-        const result = await listingsApi.addListing(
+    const handleSubmit = async (values, { resetForm }) => {
+        setProgress(0)
+        setUploadVisible(true)
+        const response = await listingsApi.addListing(
             { ...values, location },
-            (progress) =>
-                console.log(
-                    Math.round((progress.loaded / progress.total) * 100)
-                )
+            (value) => setProgress(value)
         )
-        console.log({ error: result.problem })
-        if (!result.ok) return alert("Could not save the listing.")
-        alert("Success")
+
+        if (!response.ok) {
+            setUploadVisible(false)
+            return alert("Could not save the listing.")
+        }
+
+        resetForm()
     }
 
     return (
         <Wrapper style={styles.container}>
+            <UploadIndicator
+                progress={progress}
+                visible={uploadVisible}
+                onFinish={() => {
+                    setUploadVisible(false)
+                }}
+            />
             <Form
                 initialValues={{
                     category: null,
