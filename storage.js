@@ -6,9 +6,7 @@ const { v4: uuidv4 } = require('uuid')
 const storage = multer.diskStorage({
     destination: path.resolve(__dirname, 'assets'),
     filename: (req, file, callback) => {
-        const parts = file.originalname.split('.')
-        const extension = parts[parts.length - 1]
-        const filename = `${uuidv4()}.${extension}`
+        const filename = `${uuidv4()}.${path.extname(file.originalname)}`
         callback(null, filename)
     },
 })

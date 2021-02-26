@@ -21,6 +21,10 @@ const productSchema = new Schema(
             type: String,
             required: true,
         },
+        location: {
+            latitude: Number,
+            longitude: Number,
+        },
     },
     { timestamps: true }
 )

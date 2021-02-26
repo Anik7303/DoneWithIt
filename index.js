@@ -5,6 +5,8 @@ require('./database')
 // mongoose models
 require('./models')
 
+const path = require('path')
+
 const cors = require('cors')
 const express = require('express')
 
@@ -13,11 +15,13 @@ const { authRoutes, productRoutes } = require('./routes')
 
 const app = express()
 
+app.use('/assets', express.static(path.resolve(__dirname, 'assets')))
+
 // setup cors
 app.use(cors())
 // using express's bodyparser implementation
-app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 // using multer to store files
 app.use(require('./storage'))
 
