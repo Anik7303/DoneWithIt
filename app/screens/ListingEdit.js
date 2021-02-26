@@ -12,6 +12,7 @@ import {
 import CategoryPickerItem from "../components/CategoryPickerItem"
 import Wrapper from "../components/Wrapper"
 import { useLocation } from "../hooks"
+import listingsApi from "../api/listings"
 
 const validationSchema = Yup.object().shape({
     category: Yup.object().required().nullable().label("Category"),
@@ -61,8 +62,17 @@ const categories = [
 const ListingEdit = () => {
     const [location] = useLocation()
 
-    const handleSubmit = (values) => {
-        console.log({ values, location })
+    const handleSubmit = async (values) => {
+        const result = await listingsApi.addListing(
+            { ...values, location },
+            (progress) =>
+                console.log(
+                    Math.round((progress.loaded / progress.total) * 100)
+                )
+        )
+        console.log({ error: result.problem })
+        if (!result.ok) return alert("Could not save the listing.")
+        alert("Success")
     }
 
     return (
