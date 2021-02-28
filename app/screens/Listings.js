@@ -10,7 +10,6 @@ import listingsApi from "../api/listings"
 import Routes from "../navigation/routes"
 import Text from "../components/Text"
 import Wrapper from "../components/Wrapper"
-import { generateImageUrl } from "../utils"
 
 const Listings = ({ navigation }) => {
     const { data, error, loading, request } = useApi(listingsApi.getListings)
@@ -29,7 +28,7 @@ const Listings = ({ navigation }) => {
                 keyExtractor={(item) => item._id}
                 renderItem={({ item }) => (
                     <Card
-                        imageUrl={generateImageUrl(item.images[0])}
+                        imageUrl={item.images[0].url}
                         onPress={() =>
                             navigation.navigate(Routes.LISTING_DETAILS, item)
                         }
@@ -39,8 +38,8 @@ const Listings = ({ navigation }) => {
                 )}
                 showsHorizontalScrollIndicator={false}
                 showsVerticalScrollIndicator={false}
-                // refreshing={loading}
-                // onRefresh={() => request()}
+                refreshing={loading}
+                onRefresh={() => request()}
             />
         </Wrapper>
     )

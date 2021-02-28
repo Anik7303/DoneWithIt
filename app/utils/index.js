@@ -19,4 +19,5 @@ export const getImageType = (filename) => {
     }
 }
 
-export const generateImageUrl = (name) => `${baseURL}/assets/${name}`
+export const generateImageUrl = (name) => name
+// export const generateImageUrl = (name) => `${baseURL}/assets/${name}`

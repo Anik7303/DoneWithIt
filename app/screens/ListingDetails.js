@@ -4,17 +4,13 @@ import { Image, StyleSheet, View } from "react-native"
 import Text from "../components/Text"
 import ListItem from "../components/ListItem"
 import colors from "../config/colors"
-import { generateImageUrl } from "../utils"
 
 const ListingDetails = ({ route }) => {
     const { images, title, price } = route.params
 
     return (
         <View style={styles.container}>
-            <Image
-                style={styles.image}
-                source={{ uri: generateImageUrl(images[0]) }}
-            />
+            <Image style={styles.image} source={{ uri: images[0].url }} />
             <View style={styles.detailsContainer}>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.price}>{price}</Text>

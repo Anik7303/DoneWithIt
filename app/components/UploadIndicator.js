@@ -5,13 +5,13 @@ import LottieView from "lottie-react-native"
 
 import colors from "../config/colors"
 
-const UploadIndicator = ({ progress, visible, onFinish }) => (
+const UploadIndicator = ({ progress = 0, visible, onFinish }) => (
     <Modal visible={visible}>
         <View style={styles.container}>
             {progress < 1 ? (
                 <Progress.Bar
-                    progress={progress}
                     color={colors.primary}
+                    progress={progress}
                     width={200}
                 />
             ) : (
@@ -20,7 +20,7 @@ const UploadIndicator = ({ progress, visible, onFinish }) => (
                     loop={false}
                     onAnimationFinish={onFinish}
                     source={require("../assets/animations/done.json")}
-                    style={styles.lottie}
+                    style={styles.animation}
                 />
             )}
         </View>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-    lottie: {
+    animation: {
         width: 150,
     },
 })

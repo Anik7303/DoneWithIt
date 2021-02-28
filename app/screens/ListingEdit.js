@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { StyleSheet } from "react-native"
 import * as Yup from "yup"
 
@@ -61,9 +61,19 @@ const categories = [
 ]
 
 const ListingEdit = () => {
-    const [uploadVisible, setUploadVisible] = useState(false)
     const [progress, setProgress] = useState(0)
+    const [uploadVisible, setUploadVisible] = useState(false)
+    const [animationFinish, setAnimationFinish] = useState(false)
+    const [dataUploaded, setDataUploaded] = useState(false)
     const [location] = useLocation()
+
+    useEffect(() => {
+        if (dataUploaded && animationFinish) {
+            setAnimationFinish(false)
+            setDataUploaded(false)
+            setUploadVisible(false)
+        }
+    }, [dataUploaded, animationFinish])
 
     const handleSubmit = async (values, { resetForm }) => {
         setProgress(0)
@@ -72,6 +82,7 @@ const ListingEdit = () => {
             { ...values, location },
             (value) => setProgress(value)
         )
+        setDataUploaded(true)
 
         if (!response.ok) {
             setUploadVisible(false)
@@ -87,7 +98,7 @@ const ListingEdit = () => {
                 progress={progress}
                 visible={uploadVisible}
                 onFinish={() => {
-                    setUploadVisible(false)
+                    setAnimationFinish(true)
                 }}
             />
             <Form
