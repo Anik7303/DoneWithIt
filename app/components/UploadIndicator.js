@@ -19,7 +19,7 @@ const UploadIndicator = ({ progress = 0, visible, onFinish }) => (
                     autoPlay
                     loop={false}
                     onAnimationFinish={onFinish}
-                    source={require("../assets/animations/done.json")}
+                    source={require("../assets/animations/done1.json")}
                     style={styles.animation}
                 />
             )}
