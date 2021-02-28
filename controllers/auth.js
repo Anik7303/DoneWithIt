@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const { generateError } = require('../utils')
+const { generateError } = require('../utility')
 
 // models
 const User = mongoose.model('user')

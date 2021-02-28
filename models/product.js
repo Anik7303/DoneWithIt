@@ -2,6 +2,26 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
+const imageSchema = new Schema({
+    url: {
+        type: String,
+        required: true,
+    },
+    thumbnail: {
+        type: String,
+        required: true,
+    },
+})
+
+const locationSchema = new Schema({
+    latitude: {
+        type: Number,
+    },
+    longitude: {
+        type: Number,
+    },
+})
+
 const productSchema = new Schema(
     {
         categoryId: {
@@ -12,7 +32,7 @@ const productSchema = new Schema(
             type: String,
             default: '',
         },
-        images: [String],
+        images: [imageSchema],
         price: {
             type: Number,
             required: true,
@@ -21,10 +41,7 @@ const productSchema = new Schema(
             type: String,
             required: true,
         },
-        location: {
-            latitude: Number,
-            longitude: Number,
-        },
+        location: locationSchema,
     },
     { timestamps: true }
 )

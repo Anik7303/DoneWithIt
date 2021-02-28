@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const { generateError } = require('../utils')
+const { generateError, saveThumbnails } = require('../utility')
 
 // mongoose models
 const Product = mongoose.model('product')
@@ -17,7 +17,13 @@ exports.getProducts = async (req, res, next) => {
 exports.postProduct = async (req, res, next) => {
     try {
         const { categoryId, description, price, title } = req.body
-        const images = req.files.map((file) => file.filename)
+        const imageNames = req.files.map((file) => file.filename)
+        const images = req.files.map((file) => ({
+            url: `http://${process.env.HOST_IP}:${process.env.PORT}/assets/images/${file.filename}`,
+            thumbnail: `http://${process.env.HOST_IP}:${process.env.PORT}/assets/thumbnails/${file.filename}`,
+        }))
+
+        await saveThumbnails(imageNames)
 
         const location = req.body.location
             ? JSON.parse(req.body.location)

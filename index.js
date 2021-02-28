@@ -1,7 +1,7 @@
 // loading environment variables from .env file
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 // connecting to mongodb server
-require('./database')
+require('./config/database')
 // mongoose models
 require('./models')
 
@@ -23,7 +23,7 @@ app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 // using multer to store files
-app.use(require('./storage'))
+app.use(require('./config/storage'))
 
 app.use(authRoutes)
 app.use('/listings', productRoutes)
