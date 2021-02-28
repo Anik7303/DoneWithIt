@@ -40,6 +40,6 @@ app.use((error, req, res, next) => {
     res.status(code).json({ message })
 })
 
-app.listen(process.env.PORT, () =>
-    console.log(`go to http://localhost:${process.env.PORT}`)
+app.listen(process.env.PORT, process.env.HOST_IP, () =>
+    console.log(`go to http://${process.env.HOST_IP}:${process.env.PORT}`)
 )

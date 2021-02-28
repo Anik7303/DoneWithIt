@@ -1,13 +1,18 @@
 const mongoose = require('mongoose')
 
-const { generateError, saveThumbnails } = require('../utility')
+const {
+    generateError,
+    saveThumbnails,
+    getFilenameFromUrl,
+    deleteImages,
+} = require('../utility')
 
 // mongoose models
 const Product = mongoose.model('product')
 
 exports.getProducts = async (req, res, next) => {
     try {
-        const products = await Product.find()
+        const products = await Product.find().sort({ createdAt: 'desc' })
         res.status(200).json(products)
     } catch (error) {
         next(error)
@@ -51,13 +56,25 @@ exports.putProduct = async (req, res, next) => {
         const { id } = req.params
 
         const { categoryId, description, title, price } = req.body
-        const images = req.files.map((image) => image.filename)
+        const imageNames = req.files.map((file) => file.filename)
+        const images = req.files.map((file) => ({
+            url: `http://${process.env.HOST_IP}:${process.env.PORT}/assets/images/${file.filename}`,
+            thumbnail: `http://${process.env.HOST_IP}:${process.env.PORT}/assets/thumbnails/${file.filename}`,
+        }))
+
+        await saveThumbnails(imageNames)
+
         const location = req.body.location
             ? JSON.parse(req.body.location)
             : null
 
         const product = await Product.findById(id)
         if (!product) throw generateError(404, 'product not found')
+
+        const oldImageNames = product.images.map((image) =>
+            getFilenameFromUrl(image.url)
+        )
+        await deleteImages(oldImageNames)
 
         if (categoryId) product.categoryId = categoryId
         if (description) product.description = description
@@ -80,6 +97,11 @@ exports.deleteProduct = async (req, res, next) => {
 
         const product = await Product.findById(id)
         if (!product) throw generateError(404, 'product not found')
+
+        const imageNames = product.images.map((image) =>
+            getFilenameFromUrl(image.url)
+        )
+        await deleteImages(imageNames)
 
         await product.remove()
 
