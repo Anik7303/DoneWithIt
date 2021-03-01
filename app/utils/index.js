@@ -1,5 +1,3 @@
-import { baseURL } from "../api/client"
-
 export const getExtension = (filename) => {
     const parts = filename.split(".")
     return parts[parts.length - 1]
@@ -20,4 +18,3 @@ export const getImageType = (filename) => {
 }
 
 export const generateImageUrl = (name) => name
-// export const generateImageUrl = (name) => `${baseURL}/assets/${name}`

@@ -32,6 +32,7 @@ const Listings = ({ navigation }) => {
                         onPress={() =>
                             navigation.navigate(Routes.LISTING_DETAILS, item)
                         }
+                        thumbnailUrl={item.images[0].thumbnail}
                         title={item.title}
                         subTitle={item.price}
                     />
