@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const jimp = require('jimp')
+const jwt = require('jsonwebtoken')
 
 /**
  *
@@ -74,3 +75,9 @@ exports.deleteImages = async (images) => {
         })
     )
 }
+
+/**
+ *
+ * @param {Any} payload payload for jsonwebtoken
+ */
+exports.generateToken = (payload) => jwt.sign(payload, process.env.JWT_SECRET)
