@@ -1,17 +1,31 @@
 import React from "react"
-import { StatusBar } from "expo-status-bar"
-import { NavigationContainer } from "@react-navigation/native"
+// import { useEffect, useState } from "react"
+import { Text } from "react-native"
+import { useNetInfo } from "@react-native-community/netinfo"
+// import NetInfo from "@react-native-community/netinfo"
 
-import { AuthNavigator, TabNavigator } from "./app/navigation"
-import navigationTheme from "./app/navigation/theme"
+const App = () => {
+    const netInfo = useNetInfo()
+    console.log({ netInfo })
 
-const App = () => (
-    <>
-        <StatusBar style={"auto"} />
-        <NavigationContainer theme={navigationTheme}>
-            <TabNavigator />
-        </NavigationContainer>
-    </>
-)
+    // NetInfo.fetch().then(netInfo => console.log({netInfo}))
+
+    // const [netInfo, setNetInfo] = useState(null)
+
+    // console.log(netInfo)
+
+    // useEffect(() => {
+    //     let unsubscribe
+    //     ;(async () => {
+    //         unsubscribe = NetInfo.addEventListener((state) => setNetInfo(state))
+    //     })()
+
+    //     return () => {
+    //         if (unsubscribe) unsubscribe()
+    //     }
+    // }, [])
+
+    return <Text>App</Text>
+}
 
 export default App
