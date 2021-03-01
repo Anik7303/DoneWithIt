@@ -1,19 +1,34 @@
-import React from "react"
+import React, { useState } from "react"
 import { Image, StyleSheet } from "react-native"
 import * as Yup from "yup"
 
 import Wrapper from "../components/Wrapper"
-import { Form, FormField, SubmitButton } from "../components/forms"
-import colors from "../config/colors"
+import {
+    ErrorMessage,
+    Form,
+    FormField,
+    SubmitButton,
+} from "../components/forms"
+import authApi from "../api/auth"
+import { useAuth } from "../hooks"
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
+    name: Yup.string().required().min(1).label("Name"),
     password: Yup.string().required().min(4).label("Password"),
 })
 
 const Register = () => {
-    const handleRegistration = ({ email, password }) => {
-        console.log({ email, password })
+    const [regError, setRegError] = useState(false)
+    const auth = useAuth()
+
+    const handleRegistration = async ({ email, name, password }) => {
+        const response = await authApi.register(name, email, password)
+
+        if (!response.ok) return setRegError(response.data.message)
+
+        setRegError(null)
+        auth.login(response.data)
     }
 
     return (
@@ -23,10 +38,18 @@ const Register = () => {
                 style={styles.logo}
             />
             <Form
-                initialValues={{ email: "", password: "" }}
+                initialValues={{ email: "", name: "", password: "" }}
                 onSubmit={handleRegistration}
                 validationSchema={validationSchema}
             >
+                <ErrorMessage error={regError} visible={regError} />
+                <FormField
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    icon="account"
+                    name="name"
+                    placeholder="Name"
+                />
                 <FormField
                     autoCapitalize="none"
                     autoCorrect={false}

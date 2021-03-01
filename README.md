@@ -18,6 +18,7 @@
 -   [03. Navigation][br-03-navigation]
 -   [04. Networking][br-04-networking]
 -   [05. Offline Support][br-05-offline-support]
+-   [06. Authentication & Authorization][br-06-authentication-and-authorization]
 
 [br-02-fundamentals]: https://github.com/Anik7303/DoneWithIt/tree/02-fundamentals
 [br-03-layout]: https://github.com/Anik7303/DoneWithIt/tree/03-layout
@@ -29,4 +30,4 @@
 [br-02-native-features]: https://github.com/Anik7303/DoneWithIt/tree/02-native-features
 [br-03-navigation]: https://github.com/Anik7303/DoneWithIt/tree/03-navigation
 [br-04-networking]: https://github.com/Anik7303/DoneWithIt/tree/04-networking
-[br-05-offline-support]: https://github.com/Anik7303/DoneWithIt/tree/05-offline-support
+[br-06-authentication-and-authorization]: https://github.com/Anik7303/DoneWithIt/tree/06-authentication-and-authorization

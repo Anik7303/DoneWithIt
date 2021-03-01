@@ -1,9 +1,16 @@
-import React from "react"
+import React, { useState } from "react"
 import { Image, StyleSheet } from "react-native"
 import * as Yup from "yup"
 
 import Wrapper from "../components/Wrapper"
-import { Form, FormField, SubmitButton } from "../components/forms"
+import {
+    ErrorMessage,
+    Form,
+    FormField,
+    SubmitButton,
+} from "../components/forms"
+import authApi from "../api/auth"
+import { useAuth } from "../hooks"
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
@@ -11,8 +18,16 @@ const validationSchema = Yup.object().shape({
 })
 
 const Login = () => {
-    const handleLogin = ({ email, password }) => {
-        console.log({ email, password })
+    const [loginError, setLoginError] = useState(null)
+    const auth = useAuth()
+
+    const handleLogin = async ({ email, password }) => {
+        const response = await authApi.login(email, password)
+
+        if (!response.ok) return setLoginError(response.data.message)
+
+        setLoginError(null)
+        auth.login(response.data)
     }
 
     return (
@@ -26,6 +41,7 @@ const Login = () => {
                 onSubmit={handleLogin}
                 validationSchema={validationSchema}
             >
+                <ErrorMessage error={loginError} visible={loginError} />
                 <FormField
                     autoCapitalize="none"
                     autoCorrect={false}

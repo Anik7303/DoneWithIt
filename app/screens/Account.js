@@ -8,6 +8,7 @@ import Icon from "../components/Icon"
 import colors from "../config/colors"
 import ListItemSeparator from "../components/ListItemSeparator"
 import Routes from "../navigation/routes"
+import { useAuth } from "../hooks"
 
 const list = [
     {
@@ -31,16 +32,14 @@ const list = [
 ]
 
 const Account = ({ navigation }) => {
-    const handleLogout = () => {
-        console.log("logout")
-    }
+    const { user, logout } = useAuth()
 
     return (
         <Wrapper style={styles.wrapper}>
             <View style={styles.heading}>
                 <ListItem
-                    title="Mosh Hamedani"
-                    description="programmingwithmosh@gmail.com"
+                    title={user.name}
+                    description={user.email}
                     image={require("../assets/mosh.jpg")}
                 />
             </View>
@@ -66,7 +65,7 @@ const Account = ({ navigation }) => {
                 IconComponent={() => (
                     <Icon name="logout" backgroundColor={colors.yellow} />
                 )}
-                onPress={handleLogout}
+                onPress={logout}
             />
         </Wrapper>
     )
