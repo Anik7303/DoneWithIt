@@ -1,5 +1,6 @@
 import React from "react"
-import { Image, StyleSheet, View } from "react-native"
+import { StyleSheet, View } from "react-native"
+import { Image } from "react-native-expo-image-cache"
 
 import Text from "../components/Text"
 import ListItem from "../components/ListItem"
@@ -10,7 +11,12 @@ const ListingDetails = ({ route }) => {
 
     return (
         <View style={styles.container}>
-            <Image style={styles.image} source={{ uri: images[0].url }} />
+            <Image
+                preview={{ uri: images[0].thumbnail }}
+                style={styles.image}
+                tint={"light"}
+                uri={images[0].url}
+            />
             <View style={styles.detailsContainer}>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.price}>{price}</Text>
