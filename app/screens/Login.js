@@ -10,7 +10,8 @@ import {
     SubmitButton,
 } from "../components/forms"
 import authApi from "../api/auth"
-import { useAuth } from "../hooks"
+import { useAuth, useApi } from "../hooks"
+import ActivityIndicator from "../components/ActivityIndicator"
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
@@ -19,10 +20,11 @@ const validationSchema = Yup.object().shape({
 
 const Login = () => {
     const [loginError, setLoginError] = useState(null)
+    const loginApi = useApi(authApi.login)
     const auth = useAuth()
 
     const handleLogin = async ({ email, password }) => {
-        const response = await authApi.login(email, password)
+        const response = await loginApi.request(email, password)
 
         if (!response.ok) return setLoginError(response.data.message)
 
@@ -31,38 +33,41 @@ const Login = () => {
     }
 
     return (
-        <Wrapper style={styles.container}>
-            <Image
-                source={require("../assets/logo-red.png")}
-                style={styles.logo}
-            />
-            <Form
-                initialValues={{ email: "", password: "" }}
-                onSubmit={handleLogin}
-                validationSchema={validationSchema}
-            >
-                <ErrorMessage error={loginError} visible={loginError} />
-                <FormField
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    icon="email"
-                    keyboardType="email-address"
-                    name="email"
-                    placeholder="Email"
-                    textContentType="emailAddress"
+        <>
+            <ActivityIndicator visible={loginApi.loading} />
+            <Wrapper style={styles.container}>
+                <Image
+                    source={require("../assets/logo-red.png")}
+                    style={styles.logo}
                 />
-                <FormField
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    icon="lock"
-                    name="password"
-                    placeholder="Password"
-                    secureTextEntry
-                    textContentType="password"
-                />
-                <SubmitButton title="Login" />
-            </Form>
-        </Wrapper>
+                <Form
+                    initialValues={{ email: "", password: "" }}
+                    onSubmit={handleLogin}
+                    validationSchema={validationSchema}
+                >
+                    <ErrorMessage error={loginError} visible={loginError} />
+                    <FormField
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        icon="email"
+                        keyboardType="email-address"
+                        name="email"
+                        placeholder="Email"
+                        textContentType="emailAddress"
+                    />
+                    <FormField
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        icon="lock"
+                        name="password"
+                        placeholder="Password"
+                        secureTextEntry
+                        textContentType="password"
+                    />
+                    <SubmitButton title="Login" />
+                </Form>
+            </Wrapper>
+        </>
     )
 }
 

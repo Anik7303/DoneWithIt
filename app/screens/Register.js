@@ -10,7 +10,8 @@ import {
     SubmitButton,
 } from "../components/forms"
 import authApi from "../api/auth"
-import { useAuth } from "../hooks"
+import { useApi, useAuth } from "../hooks"
+import ActivityIndicator from "../components/ActivityIndicator"
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
@@ -19,58 +20,66 @@ const validationSchema = Yup.object().shape({
 })
 
 const Register = () => {
-    const [regError, setRegError] = useState(false)
+    const registerApi = useApi(authApi.register)
+    const [error, setError] = useState(null)
     const auth = useAuth()
 
     const handleRegistration = async ({ email, name, password }) => {
-        const response = await authApi.register(name, email, password)
+        const response = await registerApi.request(name, email, password)
 
-        if (!response.ok) return setRegError(response.data.message)
+        if (!response.ok) {
+            return setError(
+                response.data.message || "An unexpected error occured"
+            )
+        }
 
-        setRegError(null)
+        setError(null)
         auth.login(response.data)
     }
 
     return (
-        <Wrapper style={styles.container}>
-            <Image
-                source={require("../assets/logo-red.png")}
-                style={styles.logo}
-            />
-            <Form
-                initialValues={{ email: "", name: "", password: "" }}
-                onSubmit={handleRegistration}
-                validationSchema={validationSchema}
-            >
-                <ErrorMessage error={regError} visible={regError} />
-                <FormField
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    icon="account"
-                    name="name"
-                    placeholder="Name"
+        <>
+            <ActivityIndicator visible={registerApi.loading} />
+            <Wrapper style={styles.container}>
+                <Image
+                    source={require("../assets/logo-red.png")}
+                    style={styles.logo}
                 />
-                <FormField
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    icon="email"
-                    keyboardType="email-address"
-                    name="email"
-                    placeholder="Email"
-                    textContentType="emailAddress"
-                />
-                <FormField
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    icon="lock"
-                    name="password"
-                    placeholder="Password"
-                    secureTextEntry
-                    textContentType="password"
-                />
-                <SubmitButton title="Register" color="secondary" />
-            </Form>
-        </Wrapper>
+                <Form
+                    initialValues={{ email: "", name: "", password: "" }}
+                    onSubmit={handleRegistration}
+                    validationSchema={validationSchema}
+                >
+                    <ErrorMessage error={error} visible={error} />
+                    <FormField
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        icon="account"
+                        name="name"
+                        placeholder="Name"
+                    />
+                    <FormField
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        icon="email"
+                        keyboardType="email-address"
+                        name="email"
+                        placeholder="Email"
+                        textContentType="emailAddress"
+                    />
+                    <FormField
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        icon="lock"
+                        name="password"
+                        placeholder="Password"
+                        secureTextEntry
+                        textContentType="password"
+                    />
+                    <SubmitButton title="Register" color="secondary" />
+                </Form>
+            </Wrapper>
+        </>
     )
 }
 

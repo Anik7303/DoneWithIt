@@ -30,4 +30,5 @@
 [br-02-native-features]: https://github.com/Anik7303/DoneWithIt/tree/02-native-features
 [br-03-navigation]: https://github.com/Anik7303/DoneWithIt/tree/03-navigation
 [br-04-networking]: https://github.com/Anik7303/DoneWithIt/tree/04-networking
+[br-05-offline-support]: https://github.com/Anik7303/DoneWithIt/tree/05-offline-support
 [br-06-authentication-and-authorization]: https://github.com/Anik7303/DoneWithIt/tree/06-authentication-and-authorization

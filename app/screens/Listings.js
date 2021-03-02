@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { StyleSheet, FlatList } from "react-native"
 
 import ActivityIndicator from "../components/ActivityIndicator"
@@ -14,35 +14,44 @@ import Wrapper from "../components/Wrapper"
 const Listings = ({ navigation }) => {
     const { data, error, loading, request } = useApi(listingsApi.getListings)
 
+    useEffect(() => {
+        request()
+    }, [])
+
     return (
-        <Wrapper style={styles.container}>
-            {error && (
-                <>
-                    <Text>Couldn't retrieve the listings.</Text>
-                    <Button title="Retry" onPress={() => request()} />
-                </>
-            )}
+        <>
             <ActivityIndicator visible={loading} />
-            <FlatList
-                data={data}
-                keyExtractor={(item) => item._id}
-                renderItem={({ item }) => (
-                    <Card
-                        imageUrl={item.images[0].url}
-                        onPress={() =>
-                            navigation.navigate(Routes.LISTING_DETAILS, item)
-                        }
-                        thumbnailUrl={item.images[0].thumbnail}
-                        title={item.title}
-                        subTitle={item.price}
-                    />
+            <Wrapper style={styles.container}>
+                {error && (
+                    <>
+                        <Text>Couldn't retrieve the listings.</Text>
+                        <Button title="Retry" onPress={() => request()} />
+                    </>
                 )}
-                showsHorizontalScrollIndicator={false}
-                showsVerticalScrollIndicator={false}
-                refreshing={loading}
-                onRefresh={() => request()}
-            />
-        </Wrapper>
+                <FlatList
+                    data={data}
+                    keyExtractor={(item) => item._id}
+                    renderItem={({ item }) => (
+                        <Card
+                            imageUrl={item.images[0].url}
+                            onPress={() =>
+                                navigation.navigate(
+                                    Routes.LISTING_DETAILS,
+                                    item
+                                )
+                            }
+                            thumbnailUrl={item.images[0].thumbnail}
+                            title={item.title}
+                            subTitle={item.price}
+                        />
+                    )}
+                    showsHorizontalScrollIndicator={false}
+                    showsVerticalScrollIndicator={false}
+                    refreshing={loading}
+                    onRefresh={() => request()}
+                />
+            </Wrapper>
+        </>
     )
 }
 

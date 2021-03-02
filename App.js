@@ -13,7 +13,6 @@ const App = () => {
     const [user, setUser] = useState(null)
     const [isReady, setIsReady] = useState(false)
 
-    console.log({ user })
     useEffect(() => {
         const checkAuthStatus = async () => {
             const user = await authStorage.getUser()

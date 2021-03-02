@@ -1,14 +1,21 @@
 import { create } from "apisauce"
 
 import cache from "../utils/cache"
+import storage from "../auth/storage"
 
-export const baseURL = "http://192.168.0.101:5000"
+export const baseURL = "http://192.168.0.101:5000/api"
 
-const apiClient = create({ baseURL })
+const client = create({ baseURL })
 
-const getMethod = apiClient.get
+client.addAsyncRequestTransform(async (request) => {
+    const token = await storage.getToken()
+    if (!token) return
+    request.headers["x-auth-token"] = token
+})
 
-apiClient.get = async (url, params, axiosConfig) => {
+const getMethod = client.get
+
+client.get = async (url, params, axiosConfig) => {
     const response = await getMethod(url, params, axiosConfig)
 
     if (response.ok) {
@@ -21,4 +28,4 @@ apiClient.get = async (url, params, axiosConfig) => {
     return data ? { ok: true, data } : response
 }
 
-export default apiClient
+export default client
