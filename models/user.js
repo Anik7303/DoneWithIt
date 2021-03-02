@@ -20,6 +20,10 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
+        pushToken: {
+            type: String,
+            default: '',
+        },
     },
     { timestamps: true }
 )
@@ -47,6 +51,19 @@ userSchema.methods.comparePassword = function (candidatePassword) {
                 user.password
             )
             resolve(matched)
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+userSchema.methods.setPushToken = function (token) {
+    const user = this
+    return new Promise(async (resolve, reject) => {
+        try {
+            user.pushToken = token
+            await user.save()
+            resolve(true)
         } catch (error) {
             reject(error)
         }

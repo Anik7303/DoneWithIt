@@ -4,10 +4,11 @@ const {
     postListing,
     putListing,
 } = require('./listing')
-const { login, register } = require('./auth')
+const { addExpoPushToken, login, register } = require('./auth')
 const { userListings } = require('./user')
 
 module.exports = {
+    addExpoPushToken,
     deleteListing,
     getListings,
     login,

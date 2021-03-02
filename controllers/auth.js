@@ -52,3 +52,17 @@ exports.register = async (req, res, next) => {
         next(error)
     }
 }
+
+exports.addExpoPushToken = async (req, res, next) => {
+    try {
+        const { token } = req.body
+        if (!token)
+            throw generateError(400, 'Push notification token not provided')
+
+        await req.user.setPushToken(token)
+
+        res.status(201).json({ message: 'token added successfully' })
+    } catch (error) {
+        next(error)
+    }
+}
