@@ -5,6 +5,7 @@ const {
     putListing,
 } = require('./listing')
 const { login, register } = require('./auth')
+const { userListings } = require('./user')
 
 module.exports = {
     deleteListing,
@@ -13,4 +14,5 @@ module.exports = {
     postListing,
     putListing,
     register,
+    userListings,
 }

@@ -9,11 +9,11 @@ const {
 
 // mongoose models
 const { LISTING } = require('../models/names')
-const Product = mongoose.model(LISTING)
+const Listing = mongoose.model(LISTING)
 
 exports.getListings = async (req, res, next) => {
     try {
-        const products = await Product.find().sort({ createdAt: 'desc' })
+        const products = await Listing.find().sort({ createdAt: 'desc' })
         res.status(200).json(products)
     } catch (error) {
         next(error)
@@ -35,7 +35,7 @@ exports.postListing = async (req, res, next) => {
             ? JSON.parse(req.body.location)
             : null
 
-        const product = new Product({
+        const product = new Listing({
             categoryId,
             description,
             price,
@@ -69,7 +69,7 @@ exports.putListing = async (req, res, next) => {
             ? JSON.parse(req.body.location)
             : null
 
-        const product = await Product.findById(id)
+        const product = await Listing.findById(id)
         if (!product) throw generateError(404, 'listing not found')
 
         const oldImageNames = product.images.map((image) =>
@@ -96,7 +96,7 @@ exports.deleteListing = async (req, res, next) => {
     try {
         const { id } = req.params
 
-        const product = await Product.findById(id)
+        const product = await Listing.findById(id)
         if (!product) throw generateError(404, 'listing not found')
 
         const imageNames = product.images.map((image) =>

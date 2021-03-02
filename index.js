@@ -11,7 +11,7 @@ const cors = require('cors')
 const express = require('express')
 
 // routes
-const { authRoutes, listingRoutes } = require('./routes')
+const { authRoutes, listingRoutes, userRoutes } = require('./routes')
 
 const app = express()
 
@@ -27,6 +27,7 @@ app.use(require('./config/storage'))
 
 app.use('/api', authRoutes)
 app.use('/api/listings', listingRoutes)
+app.use('/api/user', userRoutes)
 
 // 404 - Not Found route handler
 app.use((req, res) => {

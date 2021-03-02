@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 
 const { generateError, generateToken } = require('../utility')
@@ -24,7 +25,7 @@ exports.login = async (req, res, next) => {
             email: user.email,
         })
 
-        res.status(200).send(token)
+        res.status(200).json(token)
     } catch (error) {
         next(error)
     }
@@ -46,7 +47,7 @@ exports.register = async (req, res, next) => {
             email: user.email,
         })
 
-        res.status(201).send(token)
+        res.status(201).json(token)
     } catch (error) {
         next(error)
     }
