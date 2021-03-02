@@ -14,7 +14,7 @@ import Navigation from "../navigation/rootNavigation"
 const Tab = createBottomTabNavigator()
 
 const TabNavigator = () => {
-    const { expoPushToken, notification, response } = useNotifications()
+    const { expoPushToken, response } = useNotifications()
 
     useEffect(() => {
         if (expoPushToken) pushTokenApi.register(expoPushToken)

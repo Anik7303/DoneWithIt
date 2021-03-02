@@ -11,7 +11,26 @@ Notifications.setNotificationHandler({
 })
 
 /**
- *
+ * Schedule local notification
+ * @param {String} title notification title
+ * @param {String} body notification body
+ * @param {Object} data data for notification
+ * @param {Number} triggerAfter notification push delay in seconds
+ */
+const scheduleLocalNotification = async (
+    title,
+    body,
+    data,
+    triggerAfter = 1
+) => {
+    await Notifications.scheduleNotificationAsync({
+        content: { title, body, data },
+        trigger: { seconds: triggerAfter },
+    })
+}
+
+/**
+ * Schedule push notification
  * @param {String} title notification title
  * @param {String} body notification body
  * @param {Object} data data for notification
@@ -19,11 +38,7 @@ Notifications.setNotificationHandler({
  */
 const schedulePushNotification = async (title, body, data, triggerAfter = 2) =>
     await Notifications.scheduleNotificationAsync({
-        content: {
-            title,
-            body,
-            data,
-        },
+        content: { title, body, data },
         trigger: { seconds: triggerAfter },
     })
 
@@ -84,7 +99,13 @@ const useNotifications = () => {
         }
     }, [])
 
-    return { expoPushToken, notification, response, schedulePushNotification }
+    return {
+        expoPushToken,
+        notification,
+        response,
+        scheduleLocalNotification,
+        schedulePushNotification,
+    }
 }
 
 export default useNotifications
