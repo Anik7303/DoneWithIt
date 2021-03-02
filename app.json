@@ -21,7 +21,8 @@
             "adaptiveIcon": {
                 "foregroundImage": "./app/assets/adaptive-icon.png",
                 "backgroundColor": "#FFFFFF"
-            }
+            },
+            "useNextNotificationsApi": true
         },
         "web": {
             "favicon": "./app/assets/favicon.png"

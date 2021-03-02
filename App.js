@@ -8,6 +8,7 @@ import navigationTheme from "./app/navigation/theme"
 import OfflineNotice from "./app/components/OfflineNotice"
 import AuthContext from "./app/auth/context"
 import authStorage from "./app/auth/storage"
+import { navigationRef } from "./app/navigation/rootNavigation"
 
 const App = () => {
     const [user, setUser] = useState(null)
@@ -29,7 +30,7 @@ const App = () => {
     return (
         <AuthContext.Provider value={{ user, setUser }}>
             <StatusBar style={"auto"} />
-            <NavigationContainer theme={navigationTheme}>
+            <NavigationContainer ref={navigationRef} theme={navigationTheme}>
                 {user ? <TabNavigator /> : <AuthNavigator />}
             </NavigationContainer>
             <OfflineNotice />
