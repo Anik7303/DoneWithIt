@@ -8,9 +8,10 @@ const {
 } = require('../utility')
 
 // mongoose models
-const Product = mongoose.model('product')
+const { LISTING } = require('../models/names')
+const Product = mongoose.model(LISTING)
 
-exports.getProducts = async (req, res, next) => {
+exports.getListings = async (req, res, next) => {
     try {
         const products = await Product.find().sort({ createdAt: 'desc' })
         res.status(200).json(products)
@@ -19,7 +20,7 @@ exports.getProducts = async (req, res, next) => {
     }
 }
 
-exports.postProduct = async (req, res, next) => {
+exports.postListing = async (req, res, next) => {
     try {
         const { categoryId, description, price, title } = req.body
         const imageNames = req.files.map((file) => file.filename)
@@ -51,7 +52,7 @@ exports.postProduct = async (req, res, next) => {
     }
 }
 
-exports.putProduct = async (req, res, next) => {
+exports.putListing = async (req, res, next) => {
     try {
         const { id } = req.params
 
@@ -69,7 +70,7 @@ exports.putProduct = async (req, res, next) => {
             : null
 
         const product = await Product.findById(id)
-        if (!product) throw generateError(404, 'product not found')
+        if (!product) throw generateError(404, 'listing not found')
 
         const oldImageNames = product.images.map((image) =>
             getFilenameFromUrl(image.url)
@@ -91,12 +92,12 @@ exports.putProduct = async (req, res, next) => {
     }
 }
 
-exports.deleteProduct = async (req, res, next) => {
+exports.deleteListing = async (req, res, next) => {
     try {
         const { id } = req.params
 
         const product = await Product.findById(id)
-        if (!product) throw generateError(404, 'product not found')
+        if (!product) throw generateError(404, 'listing not found')
 
         const imageNames = product.images.map((image) =>
             getFilenameFromUrl(image.url)

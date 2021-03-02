@@ -1,3 +1,2 @@
 exports.authRoutes = require('./auth')
-exports.productRoutes = require('./product')
-
+exports.listingRoutes = require('./listing')

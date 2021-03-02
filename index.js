@@ -11,7 +11,7 @@ const cors = require('cors')
 const express = require('express')
 
 // routes
-const { authRoutes, productRoutes } = require('./routes')
+const { authRoutes, listingRoutes } = require('./routes')
 
 const app = express()
 
@@ -25,8 +25,8 @@ app.use(express.json())
 // using multer to store files
 app.use(require('./config/storage'))
 
-app.use(authRoutes)
-app.use('/listings', productRoutes)
+app.use('/api', authRoutes)
+app.use('/api/listings', listingRoutes)
 
 // 404 - Not Found route handler
 app.use((req, res) => {

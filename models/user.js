@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose')
 
+const { USER } = require('./names')
+
 const Schema = mongoose.Schema
 
 const userSchema = new Schema(
@@ -51,4 +53,4 @@ userSchema.methods.comparePassword = function (candidatePassword) {
     })
 }
 
-mongoose.model('user', userSchema)
+mongoose.model(USER, userSchema)

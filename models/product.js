@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+const { LISTING, USER } = require('./names')
+
 const Schema = mongoose.Schema
 
 const imageSchema = new Schema({
@@ -42,8 +44,12 @@ const productSchema = new Schema(
             required: true,
         },
         location: locationSchema,
+        userId: {
+            type: Schema.Types.ObjectId,
+            ref: USER,
+        },
     },
     { timestamps: true }
 )
 
-mongoose.model('product', productSchema)
+mongoose.model(LISTING, productSchema)

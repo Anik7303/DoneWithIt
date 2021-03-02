@@ -1,16 +1,16 @@
 const {
-    deleteProduct,
-    getProducts,
-    postProduct,
-    putProduct,
-} = require('./product')
+    deleteListing,
+    getListings,
+    postListing,
+    putListing,
+} = require('./listing')
 const { login, register } = require('./auth')
 
 module.exports = {
-    deleteProduct,
-    getProducts,
+    deleteListing,
+    getListings,
     login,
-    postProduct,
-    putProduct,
+    postListing,
+    putListing,
     register,
 }
