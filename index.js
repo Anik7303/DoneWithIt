@@ -14,6 +14,7 @@ const express = require('express')
 const {
     authRoutes,
     listingRoutes,
+    messageRoutes,
     notificationsRoutes,
     userRoutes,
 } = require('./routes')
@@ -34,6 +35,7 @@ app.use('/api', authRoutes)
 app.use('/api/listings', listingRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/notifications', notificationsRoutes)
+app.use('/api/messages', messageRoutes)
 
 // 404 - Not Found route handler
 app.use((req, res) => {

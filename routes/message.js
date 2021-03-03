@@ -1,12 +1,14 @@
 const express = require('express')
 
+const { getMessages, postMessage } = require('../controllers')
 const { requireAuth } = require('../middlewares')
-const { sendNotification } = require('../controllers')
 
 const router = express.Router()
 
 router.use(requireAuth)
 
-router.post('/', sendNotification)
+router.get('/', getMessages)
+
+router.post('/', postMessage)
 
 module.exports = router

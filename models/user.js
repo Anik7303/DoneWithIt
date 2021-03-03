@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose')
 
 const { USER } = require('./names')
+const { messageSchema } = require('./schemas')
 
 const Schema = mongoose.Schema
 
@@ -24,6 +25,7 @@ const userSchema = new Schema(
             type: String,
             default: '',
         },
+        messages: [messageSchema],
     },
     { timestamps: true }
 )
@@ -57,6 +59,10 @@ userSchema.methods.comparePassword = function (candidatePassword) {
     })
 }
 
+/**
+ * Stores provided token to user's pushToken field
+ * @param {String} token Expo push token
+ */
 userSchema.methods.setPushToken = function (token) {
     const user = this
     return new Promise(async (resolve, reject) => {
@@ -64,6 +70,24 @@ userSchema.methods.setPushToken = function (token) {
             user.pushToken = token
             await user.save()
             resolve(true)
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+/**
+ * Add a message to user's message list
+ * @param {Object} message Contains title, body, senderId, data?
+ */
+userSchema.methods.addMessage = function (message) {
+    const user = this
+    return new Promise(async (resolve, reject) => {
+        try {
+            const updatedMessages = [...user.messages, message]
+            user.messages = updatedMessages
+            await user.save()
+            resolve(user)
         } catch (error) {
             reject(error)
         }
