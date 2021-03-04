@@ -1,9 +1,10 @@
 import { create } from "apisauce"
 
 import cache from "../utils/cache"
+import settings from "../config/settings"
 import storage from "../auth/storage"
 
-export const baseURL = "http://192.168.0.101:5000/api"
+export const baseURL = settings.apiUrl
 
 const client = create({ baseURL })
 
