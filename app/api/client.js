@@ -25,7 +25,7 @@ client.get = async (url, params, axiosConfig) => {
 
     const data = await cache.get(url)
 
-    return data ? { ok: true, data } : response
+    return data ? { ok: false, data } : response
 }
 
 export default client

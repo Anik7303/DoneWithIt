@@ -18,7 +18,8 @@ const list = [
             name: "format-list-bulleted",
             backgroundColor: colors.primary,
         },
-        targetScreen: Routes.LISTINGS,
+        targetScreen: Routes.USER_LISTINGS,
+        data: { userListings: true },
     },
     {
         id: "2",
@@ -28,6 +29,7 @@ const list = [
             backgroundColor: colors.secondary,
         },
         targetScreen: Routes.MESSAGES,
+        data: {},
     },
 ]
 
@@ -53,7 +55,10 @@ const Account = ({ navigation }) => {
                             title={item.title}
                             IconComponent={() => <Icon {...item.icon} />}
                             onPress={() =>
-                                navigation.navigate(item.targetScreen)
+                                navigation.navigate(
+                                    item.targetScreen,
+                                    item.data
+                                )
                             }
                         />
                     )}

@@ -6,6 +6,8 @@ const endpoint = "/listings"
 
 const getListings = () => client.get(endpoint)
 
+const getUserListings = () => client.get(`/user/${endpoint}`)
+
 const addListing = (listing, onUploadProgress) => {
     const { category, description, images, location, price, title } = listing
     const data = new FormData()
@@ -32,4 +34,5 @@ const addListing = (listing, onUploadProgress) => {
 export default {
     addListing,
     getListings,
+    getUserListings,
 }

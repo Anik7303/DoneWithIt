@@ -7,6 +7,8 @@ const routes = Object.freeze({
     MESSAGES: "Messages",
     REGISTER: "Register",
     VIEW_IMAGE: "ViewImage",
+    USER_LISTINGS: "UserListings",
+    USER_LISTING_DETAILS: "UserListingDetails",
     WELCOME: "Welcome",
 })
 
