@@ -3,11 +3,9 @@ import { StyleSheet, FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 
 import ActivityIndicator from "./ActivityIndicator"
-import Button from "./Button"
 import Card from "./Card"
 import colors from "../config/colors"
 import Routes from "../navigation/routes"
-import Text from "./Text"
 import Wrapper from "./Wrapper"
 import DataLoadingError from "./DataLoadingError"
 

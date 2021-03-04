@@ -42,7 +42,7 @@ const Account = ({ navigation }) => {
                 <ListItem
                     title={user.name}
                     description={user.email}
-                    image={require("../assets/mosh.jpg")}
+                    image={user.image || require("../assets/logo-red.png")}
                 />
             </View>
             <View>
