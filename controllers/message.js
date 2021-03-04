@@ -33,7 +33,7 @@ exports.postMessage = async (req, res, next) => {
             body: message,
             senderId: req.user._id,
         }
-        if (title) messageContent.title = title
+        messageContent.title = title || `From ${req.user.name}`
         if (data) messageContent.data = data
         await receiver.addMessage(messageContent)
 

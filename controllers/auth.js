@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 
 const { generateError, generateToken } = require('../utility')

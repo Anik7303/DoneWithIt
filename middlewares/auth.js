@@ -11,10 +11,10 @@ module.exports = async (req, res, next) => {
         const token = req.header('x-auth-token') || req.header('authorization')
         if (!token) throw generateError(401, 'Access denied. No token provided')
 
-        jwt.verify(token, process.env.JWT_SECRET, async (err, { id }) => {
-            if (err) throw generateError(401, err.message)
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+            if (err) return next(generateError(401, err.message))
 
-            const user = await User.findById(id)
+            const user = await User.findById(decoded.id)
             req.user = user
             next()
         })

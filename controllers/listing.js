@@ -38,9 +38,10 @@ exports.postListing = async (req, res, next) => {
         const product = new Listing({
             categoryId,
             description,
+            images,
             price,
             title,
-            images,
+            userId: req.user._id,
         })
         if (location) product.location = location
 
@@ -71,6 +72,11 @@ exports.putListing = async (req, res, next) => {
 
         const product = await Listing.findById(id)
         if (!product) throw generateError(404, 'listing not found')
+        if (product.userId.toString() !== req.user._id.toString())
+            throw generateError(
+                401,
+                'You are not authorized to edit this listing'
+            )
 
         const oldImageNames = product.images.map((image) =>
             getFilenameFromUrl(image.url)
@@ -98,6 +104,11 @@ exports.deleteListing = async (req, res, next) => {
 
         const product = await Listing.findById(id)
         if (!product) throw generateError(404, 'listing not found')
+        if (product.userId.toString() !== req.user._id.toString())
+            throw generateError(
+                401,
+                'You are not authorized to delete this listing'
+            )
 
         const imageNames = product.images.map((image) =>
             getFilenameFromUrl(image.url)

@@ -1,3 +1,3 @@
 // initializing mongoose models
-require('./product')
+require('./listing')
 require('./user')

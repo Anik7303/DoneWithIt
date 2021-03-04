@@ -6,10 +6,13 @@ const {
     postListing,
     putListing,
 } = require('../controllers')
+const { requireAuth } = require('../middlewares')
 
 const router = express.Router()
 
 router.get('/', getListings)
+
+router.use(requireAuth)
 
 router.post('/', postListing)
 

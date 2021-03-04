@@ -20,6 +20,7 @@ and add the following variables to your .env file
 PORT = 5000
 HOST_IP = <your_local_area_ip_address> # eg. 192.168.0.100
 MONGO_URI = <your_mongo_server_uri> # eg. mongodb://localhost:27017/donewithit
+JWT_SECRET = <your_secret_key> # eg. laKDGIP43GHkl23
 ```
 
 now just run command `npm run start`
