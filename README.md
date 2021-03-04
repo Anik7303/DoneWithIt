@@ -20,6 +20,7 @@
 -   [05. Offline Support][br-05-offline-support]
 -   [06. Authentication & Authorization][br-06-authentication-and-authorization]
 -   [07. Notifications][br-07-notifications]
+-   [08. Distribution][br-08-distribution]
 
 [br-02-fundamentals]: https://github.com/Anik7303/DoneWithIt/tree/02-fundamentals
 [br-03-layout]: https://github.com/Anik7303/DoneWithIt/tree/03-layout
@@ -34,3 +35,4 @@
 [br-05-offline-support]: https://github.com/Anik7303/DoneWithIt/tree/05-offline-support
 [br-06-authentication-and-authorization]: https://github.com/Anik7303/DoneWithIt/tree/06-authentication-and-authorization
 [br-07-notifications]: https://github.com/Anik7303/DoneWithIt/tree/07-notifications
+[br-08-distribution]: https://github.com/Anik7303/DoneWithIt/tree/08-distribution

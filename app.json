@@ -2,6 +2,7 @@
     "expo": {
         "name": "DoneWithIt",
         "slug": "DoneWithIt",
+        "privacy": "unlisted",
         "version": "1.0.0",
         "orientation": "default",
         "icon": "./app/assets/icon.png",
@@ -15,14 +16,18 @@
         },
         "assetBundlePatterns": ["**/*"],
         "ios": {
-            "supportsTablet": true
+            "supportsTablet": true,
+            "bundleIdentifier": "com.anikmohammad.donewithit",
+            "buildNumber": "1.0.0"
         },
         "android": {
             "adaptiveIcon": {
                 "foregroundImage": "./app/assets/adaptive-icon.png",
                 "backgroundColor": "#FFFFFF"
             },
-            "useNextNotificationsApi": true
+            "useNextNotificationsApi": true,
+            "package": "com.anikmohammad.donewithit",
+            "versionCode": 1
         },
         "web": {
             "favicon": "./app/assets/favicon.png"
