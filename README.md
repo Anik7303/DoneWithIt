@@ -6,7 +6,7 @@
 
 ```sh
 # clone this repo
-git clone --branch https://github.com/Anik7303/DoneWithIt donewithit-backend
+git clone --branch backend https://github.com/Anik7303/DoneWithIt donewithit-backend
 # `cd` into project folder
 cd donewithit-backend
 # install dependencies
